@@ -7,9 +7,18 @@ RUN apt-get update && \
 
 WORKDIR /app
 
-RUN git clone https://github.com/Admonstrator/NordVPN-WireGuard-Config-Generator .
+# Copy local files
+COPY . .
 
+# Build Frontend
+WORKDIR /app/web-version-V2/web-version-V2-Frontend
+RUN bun install && bun run build
+
+# Setup Backend with Frontend assets
 WORKDIR /app/web-version-V2/web-version-V2-Backend
+# Copy built frontend assets to backend public directory
+RUN rm -rf public/* && \
+    cp -r ../web-version-V2-Frontend/dist/* public/
 
 RUN bun install && bun run build
 

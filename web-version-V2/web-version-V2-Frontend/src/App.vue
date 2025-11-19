@@ -194,9 +194,6 @@ watch([filterCountry, filterCity], reobserveSentinel)
   />
 
   <div v-show="isMainViewVisible" class="min-h-screen bg-vscode-bg text-vscode-text">
-    <div class="bg-nord-button-primary text-white text-center py-2 px-4 text-sm font-medium border-b border-vscode-active">
-      This is a mirror of <a href="https://nord-configs.selfhoster.nl/" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-200">https://nord-configs.selfhoster.nl/</a>
-    </div>
     <header class="sticky top-0 z-50 bg-vscode-header border-b border-vscode-active" role="banner">
       <h1 class="sr-only">NordVPN WireGuard Config Generator</h1>
       <div class="flex flex-col sm:flex-row sm:items-center gap-2 p-2">
@@ -215,6 +212,9 @@ watch([filterCountry, filterCity], reobserveSentinel)
                 <option v-for="city in citiesForCountry" :key="city" :value="city">{{ formatDisplayName(city) }}</option>
               </select>
             </div>
+          </div>
+          <div class="hidden md:flex items-center ml-auto text-xs text-nord-text-secondary px-2">
+            <span>Mirror of <a href="https://nord-configs.selfhoster.nl/" target="_blank" rel="noopener noreferrer" class="text-vscode-accent hover:underline">nord-configs.selfhoster.nl</a></span>
           </div>
         </nav>
         <div class="flex items-center justify-end gap-2 text-xs" @click="closePanel" role="group" aria-label="Sort controls">
