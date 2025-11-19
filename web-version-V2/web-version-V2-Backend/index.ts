@@ -106,8 +106,10 @@ const createRootResponse = (
 
 export default {
     port: 3000,
+    hostname: '0.0.0.0',
     fetch: (request: Request, server: Server): Response | Promise<Response> => {
         const url = new URL(request.url);
+        Logger.info('Server', `Incoming request: ${request.method} ${url.pathname}`);
 
         if (request.method === 'GET' && url.pathname === '/') {
             const clientEtag = request.headers.get('if-none-match');
